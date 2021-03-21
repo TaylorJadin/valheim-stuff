@@ -1,4 +1,4 @@
-# Get-Folder Function
+# Get-Folder function
 
 Function Get-Folder($initialDirectory="")
 {
