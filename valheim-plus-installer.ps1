@@ -37,7 +37,7 @@ Function Get-Folder($initialDirectory="")
 
 # Install Paths
 $installPath1 = "C:\Program Files (x86)\Steam\steamapps\common\Valheim"
-$installPath2 = "D:\Steam\steamapps\common\Valheim"
+$installPath2 = "C:\Steam\steamapps\common\Valheim"
 
 ### Main ###
 if (Test-Path $installPath1\valheim.exe) {
