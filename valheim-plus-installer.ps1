@@ -1,4 +1,4 @@
-﻿# Run as admin
+# Run as admin
 param([switch]$Elevated)
 
 function Test-Admin {
@@ -18,6 +18,7 @@ if ((Test-Admin) -eq $false)  {
 'running with full privileges'
 
 # Get-Folder Function
+
 Function Get-Folder($initialDirectory="")
 {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
