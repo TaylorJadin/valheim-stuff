@@ -1,5 +1,3 @@
-Clear
-
 # Run as admin
 param([switch]$Elevated)
 
@@ -36,6 +34,8 @@ Function Get-Folder($initialDirectory="")
     }
     return $folder
 }
+
+clear
 
 # Install Paths
 $installPath1 = "C:\Program Files (x86)\Steam\steamapps\common\Valheim"
