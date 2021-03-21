@@ -1,3 +1,5 @@
+Clear
+
 # Run as admin
 param([switch]$Elevated)
 
@@ -59,8 +61,7 @@ else {
         $valheim = $selectedPath
     }
     else {
-        Write-Host "Invalid Path. Exiting..."
-        Pause
+        Write-Host "Invalid Path. Please run the script again and locate the install folder for Valheim"
         Exit
     }
 }
@@ -97,4 +98,3 @@ Write-Host ""
 Write-Host "Installation complete!"
 Write-Host ""
 Write-Host ""
-pause
