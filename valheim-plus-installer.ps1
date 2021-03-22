@@ -43,6 +43,7 @@ else {
     }
     else {
         Write-Host "Invalid Path. Please run the script again and locate the install folder for Valheim"
+        Pause
         Exit
     }
 }
@@ -79,3 +80,4 @@ Write-Host ""
 Write-Host "Installation complete!"
 Write-Host ""
 Write-Host ""
+Pause
