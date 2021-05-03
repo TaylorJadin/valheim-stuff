@@ -3,6 +3,12 @@ $repo = "valheimPlus/ValheimPlus"
 $file = "WindowsClient.zip"
 $vp_config_url = "https://raw.githubusercontent.com/TaylorJadin/valheim-plus-installer/main/valheim_plus.cfg"
 
+### Install Paths ###
+$installPath1 = "C:\Program Files (x86)\Steam\steamapps\common\Valheim"
+$installPath2 = "D:\Steam\steamapps\common\Valheim"
+
+# Write some blank lines to make this look nicer in the console
+Write-Host `n`n`n`n`n
 
 # Get-Folder function
 
@@ -24,11 +30,7 @@ Function Get-Folder($initialDirectory="")
 
 clear
 
-# Install Paths
-$installPath1 = "C:\Program Files (x86)\Steam\steamapps\common\Valheim"
-$installPath2 = "D:\Steam\steamapps\common\Valheim"
-
-### Main ###
+# Find install path
 if (Test-Path $installPath1\valheim.exe) {
     Write-Host "Valehim installation found at: $installPath1"
     Write-Host ""
@@ -74,7 +76,8 @@ Expand-Archive $zip -Force
 xcopy $dir $valheim /s /y
 
 # Download valheim_plus.cfg and put into game folder
-Write-Host `nDownloading valheim_plus.cfg to game directory
+Write-Host `n
+Write-Host Downloading valheim_plus.cfg to game directory
 Invoke-WebRequest $vp_config_url -Out $valheim/BepInEx/config/valheim_plus.cfg
 
 # Removing temp files
