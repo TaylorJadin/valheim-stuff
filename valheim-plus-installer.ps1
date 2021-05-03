@@ -7,11 +7,8 @@ $vp_config_url = "https://raw.githubusercontent.com/TaylorJadin/valheim-plus-ins
 $installPath1 = "C:\Program Files (x86)\Steam\steamapps\common\Valheim"
 $installPath2 = "D:\Steam\steamapps\common\Valheim"
 
-# Write some blank lines to make this look nicer in the console
-Write-Host `n`n`n`n`n
 
 # Get-Folder function
-
 Function Get-Folder($initialDirectory="")
 {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
