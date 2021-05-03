@@ -1,7 +1,7 @@
 ### Config ###
 $repo = "valheimPlus/ValheimPlus"
 $file = "WindowsClient.zip"
-$vp_config_url = "https://raw.githubusercontent.com/TaylorJadin/valheim-plus-installer/main/valheim_plus.cfg"
+$vhp_config = "https://raw.githubusercontent.com/TaylorJadin/valheim-plus-installer/main/valheim_plus.cfg"
 
 ### Install Paths ###
 $installPath1 = "C:\Program Files (x86)\Steam\steamapps\common\Valheim"
@@ -75,7 +75,7 @@ xcopy $dir $valheim /s /y
 # Download valheim_plus.cfg and put into game folder
 Write-Host `n
 Write-Host Downloading valheim_plus.cfg to game directory
-Invoke-WebRequest $vp_config_url -Out $valheim/BepInEx/config/valheim_plus.cfg
+Invoke-WebRequest $vhp_config -Out $valheim/BepInEx/config/valheim_plus.cfg
 
 # Removing temp files
 Remove-Item $zip -Force
