@@ -74,6 +74,7 @@ Expand-Archive $zip -Force
 xcopy $dir $valheim /s /y
 
 # Download valheim_plus.cfg and put into game folder
+Write-Host ""
 Write-Host Downloading valheim_plus.cfg to game directory
 Invoke-WebRequest $vp_config_url -Out $valheim/BepInEx/config/valheim_plus.cfg
 
