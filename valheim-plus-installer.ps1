@@ -1,3 +1,8 @@
+### Config ###
+$repo = "valheimPlus/ValheimPlus"
+$file = "WindowsClient.zip"
+
+
 # Get-Folder function
 
 Function Get-Folder($initialDirectory="")
@@ -49,11 +54,7 @@ else {
 }
 
 # Download latest release from github
-$repo = "valheimPlus/ValheimPlus"
-$file = "WindowsClient.zip"
-
 $releases = "https://api.github.com/repos/$repo/releases"
-
 Write-Host Determining latest release
 $tag = (Invoke-WebRequest $releases | ConvertFrom-Json)[0].tag_name
 
