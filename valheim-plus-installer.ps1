@@ -78,14 +78,13 @@ Remove-Item $zip -Force
 Remove-Item $dir -Recurse -Force
 
 # Set up yes/no prompt
-$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","Description."
-$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","Description."
+$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","This script will download the server's valheim_plus.cfg file and place it in your game directory."
+$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","We'll skip this step."
 $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
 
 # Ask if you'd like to update your local valheim_plus.cfg with the one used on the server to keep rulesets consistent
-$title = "Config download"
 $message = "Would you like to copy the server's valheim_plus.cfg file to your game install folder? This will allow you to use the same ruleset on your local worlds as we use on the server, but is not mandatory."
-$result = $host.ui.PromptForChoice($title, $message, $options, 1)
+$result = $host.ui.PromptForChoice($message, $options, 1)
 switch ($result) {
   0{
     # Download valheim_plus.cfg and put into game folder
