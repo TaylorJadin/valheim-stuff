@@ -26,6 +26,9 @@ Function Get-Folder($initialDirectory="")
 }
 
 clear
+for ($i=0; $i=9; $i++)
+  Write-Host ""
+{
 
 # Find install path
 if (Test-Path $installPath1\valheim.exe) {
@@ -83,8 +86,9 @@ $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","We'l
 $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
 
 # Ask if you'd like to update your local valheim_plus.cfg with the one used on the server to keep rulesets consistent
-$message = "Would you like to copy the server's valheim_plus.cfg file to your game install folder? This will allow you to use the same ruleset on your local worlds as we use on the server, but is not mandatory."
-$result = $host.ui.PromptForChoice($message, $options, 1)
+$title = "Would you like to copy the server's valheim_plus.cfg file to your game install folder?"
+$message = "This will allow you to use the same ruleset on your local worlds as we use on the server, but is not mandatory."
+$result = $host.ui.PromptForChoice($title, $message, $options, 1)
 switch ($result) {
   0{
     # Download valheim_plus.cfg and put into game folder
