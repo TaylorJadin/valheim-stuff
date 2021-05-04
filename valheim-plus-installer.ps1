@@ -28,7 +28,7 @@ Function Get-Folder($initialDirectory="")
 clear
 for ($i=0; $i=9; $i++){
   Write-Host ""
-{
+}
 
 # Find install path
 if (Test-Path $installPath1\valheim.exe) {
