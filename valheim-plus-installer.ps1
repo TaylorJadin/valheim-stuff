@@ -26,7 +26,7 @@ Function Get-Folder($initialDirectory="")
 }
 
 clear
-for ($i=0; $i=9; $i++){
+for ($i=1; $i -le 10; $i++){
   Write-Host ""
 }
 
@@ -56,6 +56,23 @@ else {
     }
 }
 
+# Set up yes/no prompt
+$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","This script will download the server's valheim_plus.cfg file and place it in your game directory."
+$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","We'll skip this step."
+$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
+
+# Ask if user would like to update  local valheim_plus.cfg with the one used on the server to keep ruleset consistent
+$title = "Would you like to copy the server's valheim_plus.cfg file to your game install folder?"
+$message = "This will allow you to use the same ruleset on your local worlds as we use on the server, but is not mandatory."
+$result = $host.ui.PromptForChoice($title, $message, $options, 1)
+switch ($result) {
+  0{
+    $vpc_config_question = $true
+  }1{
+    $vpc_config_question = $false
+  }
+}
+
 # Download latest release from github
 $releases = "https://api.github.com/repos/$repo/releases"
 Write-Host "Finding latest release"
@@ -74,33 +91,18 @@ Expand-Archive $zip -Force
 
 # Copy mod files into Valheim folder
 xcopy $dir $valheim /s /y
-
 # Removing temp files
 Write-Host "Removing temp files"
 Remove-Item $zip -Force
 Remove-Item $dir -Recurse -Force
 
-# Set up yes/no prompt
-$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes","This script will download the server's valheim_plus.cfg file and place it in your game directory."
-$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No","We'll skip this step."
-$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-
-# Ask if you'd like to update your local valheim_plus.cfg with the one used on the server to keep rulesets consistent
-$title = "Would you like to copy the server's valheim_plus.cfg file to your game install folder?"
-$message = "This will allow you to use the same ruleset on your local worlds as we use on the server, but is not mandatory."
-$result = $host.ui.PromptForChoice($title, $message, $options, 1)
-switch ($result) {
-  0{
-    # Download valheim_plus.cfg and put into game folder
-    Write-Host ""
+# Download valheim_plus.cfg and put into game folder if requested
+if ($vpc_config_question) {
     Write-Host "Downloading valheim_plus.cfg to game directory"
-    Write-Host ""
     Invoke-WebRequest $vhp_config -Out $valheim/BepInEx/config/valheim_plus.cfg
-  }1{
-    Write-Host ""
-  }
 }
 
+Write-Host ""
 Write-Host ""
 Write-Host "Installation complete!"
 Write-Host ""
