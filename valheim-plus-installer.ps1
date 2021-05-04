@@ -26,7 +26,7 @@ Function Get-Folder($initialDirectory="")
 }
 
 clear
-for ($i=0; $i=9; $i++)
+for ($i=0; $i=9; $i++){
   Write-Host ""
 {
 
